@@ -196,6 +196,7 @@ export const ExtensionStateContextProvider: React.FC<{
 	const [mcpMarketplaceCatalog, setMcpMarketplaceCatalog] = useState<McpMarketplaceCatalog>({ items: [] })
 	const handleMessage = useCallback((event: MessageEvent) => {
 		const message: ExtensionMessage = event.data
+		console.log("Received message from extension:", JSON.stringify(message, null, 2).slice(0, 200))
 		switch (message.type) {
 			case "theme": {
 				if (message.text) {
