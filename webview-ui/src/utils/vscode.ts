@@ -12,8 +12,8 @@ import type { WebviewApi } from "vscode-webview"
  */
 declare global {
 	interface Window {
-		__is_standalone__?: boolean
-		standalonePostMessage?: (event: any) => void
+		__is_intellij__?: boolean
+		jsEventHandler?: (event: any) => void
 	}
 }
 
@@ -39,16 +39,17 @@ class VSCodeAPIWrapper {
 	public postMessage(message: WebviewMessage) {
 		if (this.vsCodeApi) {
 			this.vsCodeApi.postMessage(message)
-		} else if (window.__is_standalone__) {
-			if (!window.standalonePostMessage) {
-				console.warn("Standalone postMessage not found.")
-				return
-			}
+		} else if (window.__is_intellij__) {
 			const json = JSON.stringify(message)
-			console.log("Standalone postMessage: " + json.slice(0, 200))
-			window.standalonePostMessage(json)
+			console.log("Intellij event handler: " + json.slice(0, 200))
+			const handler =
+				window.jsEventHandler ||
+				((_message: unknown) => {
+					console.log("IntelliJ handler not found.")
+				})
+			handler(JSON.stringify(message))
 		} else {
-			console.log("postMessage fallback: ", message)
+			console.log("postMessage fallback: " + JSON.stringify(message))
 		}
 	}
 
