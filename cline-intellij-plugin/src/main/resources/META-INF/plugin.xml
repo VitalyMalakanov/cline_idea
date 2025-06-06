@@ -1,0 +1,38 @@
+<idea-plugin>
+    <id>com.cline.cline-intellij-plugin</id>
+    <name>Cline AI Assistant</name>
+    <version>0.1.0</version>
+    <vendor email="contact@example.com" url="https://www.example.com">Cline Inc.</vendor>
+
+    <description><![CDATA[
+    AI-powered coding assistant for IntelliJ IDEA, ported from VS Code. Helps with file manipulation, terminal commands, and more.
+    ]]></description>
+
+    <idea-version since-build="223" until-build="233.*"/>
+
+    <!-- please see https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html
+         on how to target different products -->
+    <depends>com.intellij.modules.platform</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <!-- Add your extensions here -->
+        <toolWindow id="ClineAIWindow"
+                    anchor="right"
+                    icon="/icons/clineAIIcon.svg"
+                    factoryClass="com.cline.clineintellijplugin.toolwindow.ClineToolWindowFactory"
+                    secondary="true"
+                    />
+        <applicationService serviceImplementation="com.cline.clineintellijplugin.core.ClineCoreService"/>
+    </extensions>
+
+    <actions>
+        <!-- Add your actions here -->
+        <action id="com.cline.clineintellijplugin.actions.ClineAction"
+                class="com.cline.clineintellijplugin.actions.ClineAction"
+                text="Open Cline AI Assistant"
+                description="Opens the Cline AI tool window."
+                icon="AllIcons.Actions.Execute">
+            <add-to-group group-id="ToolsMenu" anchor="last"/>
+        </action>
+    </actions>
+</idea-plugin>
