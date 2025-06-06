@@ -1,0 +1,28 @@
+# Default IntelliJ IDEA ignores
+.idea/
+*.iml
+out/
+
+# Gradle
+.gradle/
+build/
+
+# Rider
+.idea.solution/
+*.sln
+*.suo
+
+# Others
+*.swp
+*~
+Thumbs.db
+.DS_Store
+
+# Built artifacts
+*.jar
+*.zip
+*.tar.gz
+*.tar.bz2
+
+# Sensitive information
+local.properties
