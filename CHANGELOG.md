@@ -2,14 +2,9 @@
 
 ## 3.18.0
 
-### Minor Changes
-
 -   5b3647f: Prioritize active files in file context menu
 -   7e37cec: Context menu is default to File option on start up
 -   582a3b1: the response of the mcps is displayed with a collapsible which allows to focus on the model responses.
-
-### Patch Changes
-
 -   2158165: Migrated updateSettings to protos, removed didUpdateSettings, altered Plan/Act toggling in settings menu
 -   b0926b1: Fixed issue where telemetry warning popup was created for every new Cline window
 -   78792c2: Spring cleaning
